@@ -63,7 +63,7 @@ const bkmArcade = {
 </td>
 <td align="center" width="33%">
 
-### Rock Paper Scissors ✊ ****
+### Rock Paper Scissors ✊ 
 *Rock Paper Scissors redefined*
 
 🎨 **Stunning Animations**  
