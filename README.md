@@ -76,6 +76,6 @@ Hosted securely on **AWS EC2/S3**, BKM Arcade is designed to deliver fast, acces
 ## 📁 How to Run Locally
 
 ```bash
-git clone https://github.com/your-username/BKM-Arcade.git
+git clone https://github.com/beruwalage-krishan-maduwantha/BKM-Arcade.git
 cd BKM-Arcade
 Open index.html in your browser
