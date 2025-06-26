@@ -1,0 +1,88 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 2em;
+  line-height: 1.7;
+}
+
+a {
+  color: #0066cc;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: #004c99;
+  text-decoration: underline;
+}
+
+/* Layout */
+.main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 2em;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Section Styling */
+.sub {
+  margin-bottom: 2.5em;
+  padding-bottom: 1.5em;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.sub:last-child {
+  border-bottom: none;
+}
+
+h2 {
+  font-size: 1.8em;
+  color: #222;
+  margin-bottom: 0.6em;
+}
+
+p {
+  font-size: 1.05em;
+}
+
+ul {
+  margin-top: 0.5em;
+  padding-left: 1.2em;
+}
+
+li {
+  margin-bottom: 0.5em;
+  list-style-type: disc;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  body {
+    padding: 1em;
+  }
+
+  .main {
+    padding: 1.5em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  p {
+    font-size: 1em;
+  }
+}

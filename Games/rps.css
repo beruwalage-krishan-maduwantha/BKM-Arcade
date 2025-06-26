@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #111;
+  color: #fff;
+  text-align: center;
+  padding: 1.25rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #00ff99;
+  text-shadow: 0 0 6px #00ff99aa;
+  margin-bottom: 1rem;
+}
+
+#instructions {
+  background-color: #222;
+  padding: 1rem;
+  max-width: 400px;
+  margin: 0 auto 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #00ff9944 inset;
+  color: #ccc;
+}
+
+.choices {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  margin: 1.875rem 0;
+  flex-wrap: wrap;
+}
+
+.choice {
+  background-color: #222;
+  border: 2px solid #00ff99;
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  width: 6.25rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 10px #00ff9944;
+}
+
+.choice:hover {
+  transform: scale(1.1);
+  background-color: #333;
+  box-shadow: 0 0 10px #00ff99cc;
+}
+
+#result {
+  font-size: 1.25rem;
+  margin-top: 1.875rem;
+  color: #00ff99;
+  font-weight: 600;
+}
+
+.scoreboard {
+  margin-top: 1.25rem;
+  font-size: 1.125rem;
+  color: #ccc;
+}
+
+.backmenu {
+  background-color: #00ff99;
+  color: #111;
+  margin-top: 1em;
+  border-radius: 0.5em;
+  font-weight: 600;
+  padding: 0.6em 1.2em;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px #00ff99aa;
+}
+
+.backmenu:hover {
+  cursor: pointer;
+  background-color: #00cc66;
+  transform: scale(1.1);
+}
+
+.backmenu a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+#overlay.hidden {
+  display: none;
+}
+
+#overlay-content {
+  background: #111;
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #00ff9955;
+  text-align: center;
+  color: #00ff99;
+}
+
+#overlay-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 6px #00ff99cc;
+}
+
+#restart {
+  padding: 0.7rem 1.8rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  background: #00ff99;
+  color: #121212;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 10px #00ff99cc;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#restart:hover {
+  background: #00cc66;
+  transform: scale(1.05);
+}
+
+@media (max-width: 425px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .choice {
+    width: 5.5rem;
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
+
+  #result {
+    font-size: 1rem;
+  }
+
+  #instructions {
+    font-size: 0.9rem;
+  }
+
+  #restart {
+    font-size: 1rem;
+    padding: 0.6rem 1.5rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .choice {
+    width: 5rem;
+    padding: 0.8rem;
+    font-size: 1.1rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  #instructions {
+    font-size: 0.85rem;
+    padding: 0.6rem;
+  }
+
+  .scoreboard {
+    font-size: 1rem;
+  }
+
+  #restart {
+    font-size: 0.9rem;
+    padding: 0.5rem 1.2rem;
+  }
+}

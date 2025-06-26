@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #121212;
+  color: #eee;
+  text-align: center;
+  padding: 1rem;
+  user-select: none;
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #00ff99;
+  text-shadow: 0 0 6px #00ff99aa;
+}
+
+#instructions {
+  max-width: 400px;
+  margin: 0 auto 1.5rem auto;
+  font-size: 1rem;
+  color: #ccc;
+  background: #222;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #00ff9955 inset;
+}
+
+#instructions h2 {
+  margin-bottom: 0.75rem;
+  color: #00ff99;
+}
+
+#health-container {
+  max-width: 400px;
+  margin: 0 auto 1.5rem auto;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: #eee;
+  user-select: none;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+}
+
+#health-bar {
+  flex: 1;
+  height: 24px;
+  background: #333;
+  border-radius: 12px;
+  box-shadow: inset 0 0 5px #000000aa;
+  overflow: hidden;
+  position: relative;
+}
+
+#health-bar > div {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #00ff99 0%, #00cc66 50%, #009944 100%);
+  border-radius: 12px 0 0 12px;
+  transition: width 0.35s ease;
+  box-shadow: 0 0 10px #00ff99aa;
+}
+
+canvas {
+  border: 3px solid #00ff99;
+  background-color: #0a0a0a;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #00ff99bb;
+  display: block;
+  margin: 0 auto 1rem auto;
+  width: 25rem;
+  height: 25rem;
+}
+
+.backmenu {
+  background-color: #00ff99;
+  color: #121212;
+  margin-top: 1em;
+  border-radius: 0.6em;
+  padding: 0.6em 1.2em;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 0 8px #00ff99aa;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.backmenu:hover {
+  cursor: pointer;
+  background-color: #00cc66;
+  transform: scale(1.1);
+}
+
+.backmenu a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Game Over Overlay */
+#game-over-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 400px;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  user-select: none;
+  z-index: 10;
+}
+
+#game-over-overlay.hidden {
+  display: none;
+}
+
+#game-over-content {
+  background: #111;
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #00ff9955;
+  text-align: center;
+  color: #00ff99;
+}
+
+#game-over-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 6px #00ff99cc;
+}
+
+#game-over-content p {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+#restart-btn {
+  padding: 0.7rem 1.8rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  background: #00ff99;
+  color: #121212;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 10px #00ff99cc;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#restart-btn:hover {
+  background: #00cc66;
+  transform: scale(1.05);
+}
+
+
+@media (max-width: 425px) {
+  body {
+    padding: 0.75rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  #instructions {
+    max-width: 100%;
+    font-size: 0.9rem;
+    padding: 0.8rem 1rem;
+  }
+
+  #health-container {
+    max-width: 100%;
+    font-size: 1rem;
+    gap: 0.3rem;
+  }
+
+  #health-bar {
+    height: 18px;
+  }
+
+  canvas {
+    width: 320px !important;
+    height: 320px !important;
+    border-width: 2px;
+  }
+
+  #game-over-overlay {
+    width: 320px;
+    height: 320px;
+  }
+
+  #game-over-content {
+    padding: 1.5rem 2rem;
+  }
+
+  #game-over-content h2 {
+    font-size: 2rem;
+  }
+
+  #game-over-content p {
+    font-size: 1rem;
+  }
+
+  #restart-btn {
+    padding: 0.6rem 1.4rem;
+    font-size: 1rem;
+  }
+
+  .backmenu {
+    font-size: 0.9rem;
+    padding: 0.5em 1em;
+  }
+}
+
+
+@media (max-width: 320px) {
+  body {
+    padding: 0.5rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  #instructions {
+    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  #health-container {
+    font-size: 0.9rem;
+    gap: 0.2rem;
+  }
+
+  #health-bar {
+    height: 16px;
+  }
+
+  canvas {
+    width: 280px !important;
+    height: 280px !important;
+    border-width: 1.5px;
+  }
+
+  #game-over-overlay {
+    width: 280px;
+    height: 280px;
+  }
+
+  #game-over-content {
+    padding: 1rem 1.5rem;
+  }
+
+  #game-over-content h2 {
+    font-size: 1.7rem;
+  }
+
+  #game-over-content p {
+    font-size: 0.9rem;
+  }
+
+  #restart-btn {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .backmenu {
+    font-size: 0.8rem;
+    padding: 0.4em 0.8em;
+  }
+}

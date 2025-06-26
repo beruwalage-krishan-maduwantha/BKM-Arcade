@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rock Paper Scissors - BKM Arcade</title>
+  <link rel="stylesheet" href="rps.css" />
+</head>
+<body>
+  <h1>✊ Rock Paper Scissors ✌️</h1>
+
+  <div id="instructions">
+    <h2>How to Play</h2>
+    <p>Click on ✊ Rock, ✋ Paper, or ✌️ Scissors to challenge the computer!</p>
+    <p>First to 5 points wins the game.</p>
+  </div>
+
+  <div class="choices">
+    <div class="choice" onclick="play('rock')">✊ Rock</div>
+    <div class="choice" onclick="play('paper')">✋ Paper</div>
+    <div class="choice" onclick="play('scissors')">✌️ Scissors</div>
+  </div>
+
+  <div id="result">Make your move!</div>
+
+  <div class="scoreboard">
+    <p>👤 You: <span id="user-score">0</span></p>
+    <p>💻 Computer: <span id="computer-score">0</span></p>
+  </div>
+
+  <div id="overlay" class="hidden">
+    <div id="overlay-content">
+      <h2 id="final-message"></h2>
+      <button onclick="restartGame()" id="restart">Play Again</button>
+    </div>
+  </div>
+
+  <div><button class="backmenu"><a href="../index.html">Back to Menu</a></button></div>
+
+  <script src="rps.js"></script>
+</body>
+</html>

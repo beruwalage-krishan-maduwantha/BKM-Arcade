@@ -1,0 +1,305 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #03045e;
+  transition: 200ms color ease-in-out;
+}
+a:hover {
+  color: white;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(to right, rgba(91,179,201,1) 0%, rgba(203,112,255,1) 65%, rgba(194,106,245,1) 100%);
+  padding-block: 0.7em;
+}
+
+.headerarea {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 1em;
+  flex-wrap: wrap;
+}
+
+.headBA {
+  color: white;
+  font-weight: 500;
+}
+
+.navlinks,
+.login {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.navlinks li,
+.login li {
+  margin-inline: 10px;
+}
+
+.navlinks li:last-child,
+.login li:last-child {
+  margin-right: 0;
+}
+
+.signup {
+  background-color: #6738db;
+  padding: 0.7em 1.3em;
+  border-radius: 0.4em;
+  transition: transform 0.2s ease;
+  border: none;
+}
+
+.signup:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.signup a {
+  color: white;
+  font-weight: 600;
+}
+
+/* Welcome text */
+h4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 1em;
+  color: #03045e;
+}
+
+/* Games Grid */
+.games_grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4em;
+  padding-block: 1em;
+  flex-wrap: wrap;
+}
+
+.game_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #2a2a2a;
+  padding: 1.5rem;
+  border-radius: 12px;
+  color: white;
+  font-size: 1.2rem;
+  box-shadow: 13px 2px 12px 4px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  text-align: center;
+  width: 140px;
+  text-decoration: none;
+}
+
+.game_card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
+.game_card:hover {
+  transform: scale(1.05);
+  background-color: #333;
+}
+
+
+/* Footer */
+:root {
+  --primaryColor: #0a1535;
+  --secondaryColor: #39a1f6;
+  --fontcolor: #a7a7a7;
+  --whitetext: white;
+}
+
+#footer {
+  background-color: var(--primaryColor);
+  margin-top: 100px;
+  padding: 30px 10px;
+  color: var(--whitetext);
+  border-radius: 10px 10px 0 0;
+}
+
+.footercontent {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.footerlinks {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  margin-bottom: 2em;
+  flex-wrap: wrap;
+}
+
+.BA h1 {
+  margin: 0;
+  font-size: 24px;
+  color: var(--whitetext);
+}
+
+.links {
+  display: flex;
+  gap: 3.5em;
+  flex-wrap: wrap;
+  padding-left: 0;
+}
+
+.links li {
+  margin-bottom: 8px;
+}
+
+.links li a {
+  color: var(--secondaryColor);
+  font-weight: 300;
+  transition: 0.2s background-color ease-in-out, color 0.2s ease-in-out;
+}
+
+.links li a:hover {
+  color: var(--whitetext);
+}
+
+.title {
+  color: var(--fontcolor);
+  margin-bottom: 0.6em;
+}
+
+.CopyRights {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Privacy area */
+.privacyarea {
+  border-top: 1px solid var(--fontcolor);
+  padding: 2em 0;
+}
+
+.privacyareacontent {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.privacyarea .links {
+  justify-content: flex-start;
+  gap: 1em;
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.google-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Responsive */
+@media (max-width: 425px) {
+
+  .headerarea,
+  .login {
+    flex-direction: column;
+    gap: 0.2em;
+  }
+
+  .games_grid {
+    flex-direction: column;
+    gap: 2em;
+    padding-inline: 1em;
+  }
+
+  .game_card {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 320px) {
+
+  body {
+    font-size: 14px;
+  }
+
+  .headerarea {
+    padding-inline: 0.5em;
+  }
+
+  .navlinks li,
+  .login li {
+    margin-inline: 5px;
+  }
+
+  .signup {
+    padding: 0.5em;
+    font-size: 14px;
+  }
+}

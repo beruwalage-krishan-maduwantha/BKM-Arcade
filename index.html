@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BKM Arcade</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <div class="header">
+      <div class="headerarea">
+        <div><h1 class="headBA">BKM Arcade</h1></div>
+
+        <ul class="navlinks">
+          <li><a href="header.html">Our service</a></li>
+          <li><a href="header.html">About us</a></li>
+          <li><a href="header.html">Contact us</a></li>
+        </ul>
+
+        <ul class="login">
+          <li><a href="#" id="loginBtn">Login</a></li>
+          <button class="signup"><a href="#" id="signupBtn">Sign up</a></button>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <h4>Welcome! Choose a game to play</h4>
+    </div>
+
+    <div class="games_grid">
+      <a href="Games/snake.html" class="game_card">
+        <img src="images/snake_17959764.png" alt="Snake Game" />
+        <span class="spancont">Snake</span>
+      </a>
+      <a href="Games/plane.html" class="game_card">
+        <img src="images/aviation_9192398.png" alt="2D Plane Game" />
+        <span class="spancont">2D Plane Game</span>
+      </a>
+      <a href="Games/rps.html" class="game_card">
+        <img src="images/rock-paper-scissors_6832100.png" alt="Rock Paper Scissors" />
+        <span class="spancont">Rock Paper Scissors</span>
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+      <div class="footercontent">
+        <div class="footerlinks">
+          <div class="BA"><h1>BKM Arcade</h1></div>
+
+          <div>
+            <ul class="links">
+              <li> 
+                <p class="title">About BKM Arcade</p>
+                <ul>
+                  <li><a href="header.html">About us</a></li>
+                </ul>
+              </li>
+              <li>
+                <p class="title">Developers</p>
+                <ul>
+                  <li><a href="divelopers.html">Forum</a></li>
+                  <li><a href="divelopers.html">Projects</a></li>
+                  <li><a href="divelopers.html">Open Source</a></li>
+                </ul>
+              </li>
+
+              <li>
+                <p class="title">Resources</p>
+                <ul>
+                  <li><a href="resources.html">Documentation</a></li>
+                  <li><a href="resources.html">Support</a></li>
+                  <li><a href="https://github.com/beruwalage-krishan-maduwantha">Github</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <div class="privacyarea">
+            <div class="privacyareacontent">
+              <ul class="links">
+                <li class="CopyRights">&copy;BKM Coding | 2025</li>
+                <li><a href="privacyarea.html">Terms and Conditions</a></li>
+                <li><a href="privacyarea.html">Privacy Policy</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login/Signup Modal -->
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modalTitle">Login</h2>
+      <button class="google-btn">
+        <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo" />
+        Continue with Google
+      </button>
+      <p style="font-size: 12px; color: gray;">* Frontend simulation only</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

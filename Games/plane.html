@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>2D Plane Game - BKM Arcade</title>
+  <link rel="stylesheet" href="plane.css" />
+</head>
+<body>
+  <h1>✈️ 2D Plane Game</h1>
+
+  <div id="instructions">
+    <h2>How to Play</h2>
+    <p>Use <strong>W (up), A (left), S (down), D (right)</strong> to move the plane.</p>
+    <p>Press <strong>Spacebar</strong> to shoot bullets.</p>
+    <p>Avoid enemies and shoot them down to earn points!</p>
+  </div>
+
+  <div id="health-container">
+    <span>Health:</span>
+    <div id="health-bar"><div></div></div>
+  </div>
+
+  <div style="position: relative; display: inline-block;">
+    <canvas id="planeCanvas" width="400" height="400"></canvas>
+
+    <div id="game-over-overlay" class="hidden">
+      <div id="game-over-content">
+        <h2>Game Over</h2>
+        <p id="final-score"></p>
+        <p id="high-score-display"></p>
+        <button id="restart-btn">Restart Game</button>
+      </div>
+    </div>
+  </div>
+
+  <div><button class="backmenu"><a href="../index.html">Back to Menu</a></button></div>
+
+
+
+  <script src="plane.js"></script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #111;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #00ff99;
+  text-shadow: 0 0 6px #00ff99aa;
+  margin-bottom: 1rem;
+}
+
+#instructions {
+  background-color: #222;
+  padding: 1rem;
+  max-width: 400px;
+  margin: 0 auto 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #00ff9944 inset;
+  color: #ccc;
+}
+
+canvas.gameCanvas {
+  border: 3px solid #00ff99;
+  background-color: #000;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #00ff99bb;
+  display: block;
+  margin: 1rem auto;
+  width: 25rem;
+  height: 25rem;
+}
+
+#scoreDisplay {
+  font-size: 1.25rem;
+  color: #fff;
+  margin: 1rem auto;
+  font-weight: 600;
+}
+
+#difficulty {
+  margin: 1rem auto;
+  font-size: 1rem;
+}
+
+#difficulty select {
+  padding: 0.5rem;
+  border-radius: 6px;
+  background-color: #00ff99;
+  color: #111;
+  font-weight: 600;
+  border: none;
+  outline: none;
+}
+
+.backmenu {
+  background-color: #00ff99;
+  color: #111;
+  margin-top: 1em;
+  border-radius: 0.5em;
+  font-weight: 600;
+  padding: 0.6em 1.2em;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px #00ff99aa;
+}
+
+.backmenu:hover {
+  cursor: pointer;
+  background-color: #00cc66;
+  transform: scale(1.1);
+}
+
+.backmenu a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 400px;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  z-index: 10;
+}
+
+#overlay.hidden {
+  display: none;
+}
+
+#overlay-content {
+  background: #111;
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #00ff9955;
+  text-align: center;
+  color: #00ff99;
+}
+
+#overlay-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 6px #00ff99cc;
+}
+
+#overlay-content p {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+#restart {
+  padding: 0.7rem 1.8rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  background: #00ff99;
+  color: #121212;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 10px #00ff99cc;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#restart:hover {
+  background: #00cc66;
+  transform: scale(1.05);
+}
+
+@media (max-width: 425px) {
+  h1 {
+    font-size: 2rem;
+  }
+  canvas.gameCanvas {
+    width: 320px !important;
+    height: 320px !important;
+  }
+  #instructions {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
+  .backmenu {
+    font-size: 0.9rem;
+    padding: 0.5em 1em;
+  }
+  #overlay {
+    width: 320px;
+    height: 320px;
+  }
+}
+
+@media (max-width: 320px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+  canvas.gameCanvas {
+    width: 280px !important;
+    height: 280px !important;
+  }
+  #instructions {
+    font-size: 0.85rem;
+    padding: 0.6rem;
+  }
+  #scoreDisplay {
+    font-size: 1rem;
+  }
+  .backmenu {
+    font-size: 0.8rem;
+    padding: 0.5em 0.9em;
+  }
+  #overlay {
+    width: 280px;
+    height: 280px;
+  }
+}
