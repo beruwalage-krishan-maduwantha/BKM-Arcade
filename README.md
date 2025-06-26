@@ -54,9 +54,7 @@ Hosted securely on **AWS EC2/S3**, BKM Arcade is designed to deliver fast, acces
 
 ## 🌐 Live Demo
 
-🔗 [Coming Soon – Live Link]
-
-> (Replace this with your hosted link once it's ready)
+> (http://bkm-arcade-site.s3-website.eu-north-1.amazonaws.com)
 
 ---
 
