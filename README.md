@@ -37,7 +37,7 @@ const bkmArcade = {
 <tr>
 <td align="center" width="33%">
 
-### 🐍 **SNAKE EVOLVED**
+### 🐍 **Snake**
 *The timeless classic, perfected*
 
 🎚️ **Dynamic Difficulty**  
@@ -50,7 +50,7 @@ const bkmArcade = {
 </td>
 <td align="center" width="33%">
 
-### ✈️ **SKY DEFENDER**
+### ✈️ **2D Plan Game**
 *High-octane aerial combat*
 
 ❤️ **Health Management**  
@@ -63,7 +63,7 @@ const bkmArcade = {
 </td>
 <td align="center" width="33%">
 
-### ✊ **ULTIMATE RPS**
+### Rock Paper Scissors ✊ ****
 *Rock Paper Scissors redefined*
 
 🎨 **Stunning Animations**  
