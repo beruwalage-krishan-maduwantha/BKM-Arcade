@@ -2,46 +2,70 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Snake Game - BKM Arcade</title>
   <link rel="stylesheet" href="snake.css" />
 </head>
 <body>
+  <div class="container">
+    <h1>🐍 Snake</h1>
 
-  <h1>🐍 Snake Game</h1>
+    <div class="game-header">
+      <div class="instructions">
+        <h2>MISSION BRIEFING</h2>
+        <p>Navigate the cyber-snake using <strong>WASD</strong> or arrow keys</p>
+        <p>Consume energy cores to grow and increase your score</p>
+        <p>Avoid collision with walls and your own tail!</p>
+        <p>Press <strong>P</strong> to pause/resume the simulation</p>
+      </div>
 
-  <div id="instructions">
-    <h2>How to Play</h2>
-    <p>Use <strong>W / ↑</strong>, <strong>A / ←</strong>, <strong>S / ↓</strong>, <strong>D / →</strong> to move the snake.</p>
-    <p>Eat the food 🟢, avoid crashing into yourself or the walls!</p>
-    <p>Press <strong>P</strong> to pause/resume the game.</p>
-  </div>
+      <div class="score-container">
+        <div class="score-display">SCORE: <span id="score">0</span></div>
+        <div class="score-display">HIGH SCORE: <span id="highScore">0</span></div>
+      </div>
 
-  <canvas class="gameCanvas" width="400" height="400"></canvas>
-
-  <div id="scoreDisplay">Score: <span id="score">0</span></div>
-
-  <div id="difficulty">
-    <label>Difficulty: </label>
-    <select id="difficulty-select">
-      <option value="200">Easy</option>
-      <option value="150" selected>Normal</option>
-      <option value="100">Hard</option>
-    </select>
-  </div>
-
-  <div id="overlay" class="hidden">
-    <div id="overlay-content">
-      <h2>Game Over</h2>
-      <p id="finalScore"></p>
-      <button id="restart">Restart</button>
+      <div class="difficulty-container">
+        <label>DIFFICULTY LEVEL:</label>
+        <select id="difficulty-select">
+          <option value="200">EASY</option>
+          <option value="150" selected>NORMAL</option>
+          <option value="100">HARD</option>
+          <option value="75">EPIC</option>
+        </select>
+      </div>
     </div>
+
+    <div class="game-container">
+      <canvas id="gameCanvas" width="500" height="500"></canvas>
+      
+      <div id="gameOverOverlay" class="game-over-overlay hidden">
+        <div class="game-over-content">
+          <h2>Mission Failed</h2>
+          <p id="finalScore"></p>
+          <p id="highScoreMessage"></p>
+          <button id="restartBtn" class="btn">RESTART GAME</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pause-info">Press P to pause • Use WASD or arrow keys to control</div>
+
+    <div class="mobile-controls">
+      <div class="controls">
+        <div class="control-btn empty"></div>
+        <div class="control-btn" id="upBtn">↑</div>
+        <div class="control-btn empty"></div>
+        <div class="control-btn" id="leftBtn">←</div>
+        <div class="control-btn" id="pauseBtn">⏸</div>
+        <div class="control-btn" id="rightBtn">→</div>
+        <div class="control-btn empty"></div>
+        <div class="control-btn" id="downBtn">↓</div>
+        <div class="control-btn empty"></div>
+      </div>
+    </div>
+
+    <button class="btn" onclick="window.location.href='../index.html'">RETURN TO MENU</button>
   </div>
-
-  <div><button class="backmenu"><a href="../index.html">Back to Menu</a></button></div>
-
-  <audio id="eatSound" src="crunchy-bite-2-340948.mp3" preload="auto"></audio>
-  <audio id="gameOverSound" src="game-over-arcade-6435.mp3" preload="auto"></audio>
 
   <script src="snake.js"></script>
 </body>

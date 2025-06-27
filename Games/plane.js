@@ -1,181 +1,270 @@
-const canvas = document.getElementById("planeCanvas");
-const ctx = canvas.getContext("2d");
+const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    const healthBar = document.querySelector(".health-fill");
+    const gameOverOverlay = document.getElementById("gameOverOverlay");
+    const finalScoreText = document.getElementById("finalScore");
+    const highScoreText = document.getElementById("highScore");
+    const restartBtn = document.getElementById("restartBtn");
 
-const healthBar = document.querySelector("#health-bar > div");
-const gameOverOverlay = document.getElementById("game-over-overlay");
-const finalScoreText = document.getElementById("final-score");
-const highScoreDisplay = document.getElementById("high-score-display");
-const restartBtn = document.getElementById("restart-btn");
-const gameOverSound = document.getElementById("gameOverSound");
+    // Game objects
+    const player = {
+      x: canvas.width / 2,
+      y: canvas.height - 60,
+      width: 30,
+      height: 40,
+      speed: 5,
+      maxHealth: 100,
+      health: 100
+    };
 
-const plane = {
-  x: canvas.width / 2,
-  y: canvas.height - 40,
-  width: 20,
-  height: 30,
-  speed: 4,
-  maxHealth: 100,
-  health: 100
-};
+    const bullets = [];
+    const enemies = [];
+    let score = 0;
+    let highScore = parseInt(localStorage.getItem("planeHighScore") || "0");
+    let keys = {};
+    let gameOver = false;
+    let enemySpawnRate = 1500;
+    let lastEnemySpawn = 0;
 
-const bullets = [];
-const enemies = [];
-let score = 0;
-let highScore = localStorage.getItem("bkmPlaneHighScore") || 0;
-highScore = parseInt(highScore, 10) || 0;
+    // Touch controls
+    const mobileControls = {
+      up: document.getElementById("upBtn"),
+      down: document.getElementById("downBtn"),
+      left: document.getElementById("leftBtn"),
+      right: document.getElementById("rightBtn"),
+      fire: document.getElementById("fireBtn")
+    };
 
-let keys = {};
-let gameOver = false;
-
-document.addEventListener("keydown", e => {
-  keys[e.key.toLowerCase()] = true;
-  if (e.key === " " && !gameOver) {
-    bullets.push({ x: plane.x, y: plane.y });
-  }
-});
-
-document.addEventListener("keyup", e => {
-  keys[e.key.toLowerCase()] = false;
-});
-
-restartBtn.addEventListener("click", () => {
-  resetGame();
-});
-
-function drawPlane() {
-  ctx.fillStyle = "lime";
-  ctx.beginPath();
-  ctx.moveTo(plane.x, plane.y);
-  ctx.lineTo(plane.x - plane.width / 2, plane.y + plane.height);
-  ctx.lineTo(plane.x + plane.width / 2, plane.y + plane.height);
-  ctx.closePath();
-  ctx.fill();
-}
-
-function drawBullets() {
-  ctx.fillStyle = "red";
-  bullets.forEach((b, i) => {
-    b.y -= 6;
-    ctx.fillRect(b.x - 2, b.y, 4, 10);
-    if (b.y < 0) bullets.splice(i, 1);
-  });
-}
-
-function drawEnemies() {
-  ctx.fillStyle = "yellow";
-  enemies.forEach((e, i) => {
-    e.y += 2;
-    ctx.fillRect(e.x, e.y, e.width, e.height);
-
-    if (
-      plane.x + plane.width / 2 > e.x &&
-      plane.x - plane.width / 2 < e.x + e.width &&
-      plane.y + plane.height > e.y &&
-      plane.y < e.y + e.height
-    ) {
-      enemies.splice(i, 1);
-      damagePlane(20);
-    }
-
-    if (e.y > canvas.height) enemies.splice(i, 1);
-  });
-}
-
-function damagePlane(amount) {
-  plane.health -= amount;
-  if (plane.health < 0) plane.health = 0;
-  updateHealthBar();
-
-  if (plane.health <= 0 && !gameOver) {
-    endGame();
-  }
-}
-
-function updateHealthBar() {
-  const healthPercent = (plane.health / plane.maxHealth) * 100;
-  healthBar.style.width = healthPercent + "%";
-
-  if (healthPercent > 50) {
-    healthBar.style.background = "linear-gradient(90deg, #00ff99 0%, #00cc66 50%, #009944 100%)";
-  } else if (healthPercent > 25) {
-    healthBar.style.background = "linear-gradient(90deg, #ffcc00 0%, #ff9900 50%, #cc6600 100%)";
-  } else {
-    healthBar.style.background = "linear-gradient(90deg, #ff4444 0%, #cc0000 50%, #990000 100%)";
-  }
-}
-
-function detectCollisions() {
-  bullets.forEach((b, bi) => {
-    enemies.forEach((e, ei) => {
-      if (b.x > e.x && b.x < e.x + e.width && b.y < e.y + e.height && b.y > e.y) {
-        enemies.splice(ei, 1);
-        bullets.splice(bi, 1);
-        score += 10;
+    // Event listeners
+    document.addEventListener("keydown", e => {
+      keys[e.key.toLowerCase()] = true;
+      if (e.key === " " && !gameOver) {
+        e.preventDefault();
+        fireBullet();
       }
     });
-  });
-}
 
-function movePlane() {
-  if (keys["a"] && plane.x > plane.width / 2) plane.x -= plane.speed;
-  if (keys["d"] && plane.x < canvas.width - plane.width / 2) plane.x += plane.speed;
-  if (keys["w"] && plane.y > 0) plane.y -= plane.speed;
-  if (keys["s"] && plane.y < canvas.height - plane.height) plane.y += plane.speed;
-}
+    document.addEventListener("keyup", e => {
+      keys[e.key.toLowerCase()] = false;
+    });
 
-function drawScore() {
-  ctx.fillStyle = "white";
-  ctx.font = "16px Poppins";
-  ctx.fillText("Score: " + score, 10, 20);
-  ctx.fillText("High Score: " + highScore, 10, 40);
-}
+    // Mobile controls
+    Object.entries(mobileControls).forEach(([action, btn]) => {
+      if (btn) {
+        btn.addEventListener("touchstart", e => {
+          e.preventDefault();
+          if (action === "fire") {
+            fireBullet();
+          } else {
+            keys[getKeyForAction(action)] = true;
+          }
+        });
+        
+        btn.addEventListener("touchend", e => {
+          e.preventDefault();
+          if (action !== "fire") {
+            keys[getKeyForAction(action)] = false;
+          }
+        });
+      }
+    });
 
-function endGame() {
-  gameOver = true;
+    function getKeyForAction(action) {
+      const keyMap = { up: "w", down: "s", left: "a", right: "d" };
+      return keyMap[action];
+    }
 
-  if (score > highScore) {
-    highScore = score;
-    localStorage.setItem("bkmPlaneHighScore", highScore);
-  }
+    restartBtn.addEventListener("click", resetGame);
 
-  finalScoreText.textContent = `Your Score: ${score}`;
-  highScoreDisplay.textContent = `High Score: ${highScore}`;
-  gameOverOverlay.classList.remove("hidden");
-}
+    function fireBullet() {
+      bullets.push({
+        x: player.x,
+        y: player.y,
+        width: 4,
+        height: 12,
+        speed: 8
+      });
+    }
 
-function resetGame() {
-  plane.health = plane.maxHealth;
-  updateHealthBar();
+    function drawPlayer() {
+      ctx.fillStyle = "#00ff88";
+      ctx.beginPath();
+      ctx.moveTo(player.x, player.y);
+      ctx.lineTo(player.x - player.width/2, player.y + player.height);
+      ctx.lineTo(player.x + player.width/2, player.y + player.height);
+      ctx.closePath();
+      ctx.fill();
+      
+      // Engine glow
+      ctx.fillStyle = "#ff6600";
+      ctx.fillRect(player.x - 4, player.y + player.height - 5, 8, 10);
+    }
 
-  score = 0;
-  enemies.length = 0;
-  bullets.length = 0;
-  plane.x = canvas.width / 2;
-  plane.y = canvas.height - 40;
+    function drawBullets() {
+      ctx.fillStyle = "#ffff00";
+      for (let i = bullets.length - 1; i >= 0; i--) {
+        const bullet = bullets[i];
+        bullet.y -= bullet.speed;
+        
+        ctx.fillRect(bullet.x - bullet.width/2, bullet.y, bullet.width, bullet.height);
+        
+        if (bullet.y < 0) {
+          bullets.splice(i, 1);
+        }
+      }
+    }
 
-  gameOver = false;
-  gameOverOverlay.classList.add("hidden");
-}
+    function drawEnemies() {
+      ctx.fillStyle = "#ff4444";
+      for (let i = enemies.length - 1; i >= 0; i--) {
+        const enemy = enemies[i];
+        enemy.y += enemy.speed;
+        
+        ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
+        
+        // Check collision with player
+        if (isColliding(player, enemy)) {
+          enemies.splice(i, 1);
+          damagePlayer(25);
+          continue;
+        }
+        
+        if (enemy.y > canvas.height) {
+          enemies.splice(i, 1);
+        }
+      }
+    }
 
-function update() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  if (!gameOver) {
-    movePlane();
-    drawPlane();
-    drawBullets();
-    drawEnemies();
-    detectCollisions();
-    drawScore();
-  }
-  requestAnimationFrame(update);
-}
+    function spawnEnemy() {
+      const now = Date.now();
+      if (now - lastEnemySpawn > enemySpawnRate) {
+        enemies.push({
+          x: Math.random() * (canvas.width - 40),
+          y: -40,
+          width: 30,
+          height: 30,
+          speed: 2 + Math.random() * 2
+        });
+        lastEnemySpawn = now;
+        
+        // Increase difficulty over time
+        if (enemySpawnRate > 800) {
+          enemySpawnRate -= 5;
+        }
+      }
+    }
 
-setInterval(() => {
-  if (!gameOver) {
-    const x = Math.random() * (canvas.width - 30);
-    enemies.push({ x, y: 0, width: 30, height: 20 });
-  }
-}, 1500);
+    function checkBulletCollisions() {
+      for (let i = bullets.length - 1; i >= 0; i--) {
+        const bullet = bullets[i];
+        for (let j = enemies.length - 1; j >= 0; j--) {
+          const enemy = enemies[j];
+          if (isColliding(bullet, enemy)) {
+            bullets.splice(i, 1);
+            enemies.splice(j, 1);
+            score += 10;
+            break;
+          }
+        }
+      }
+    }
 
-update();
-updateHealthBar();
+    function isColliding(rect1, rect2) {
+      return rect1.x < rect2.x + rect2.width &&
+             rect1.x + rect1.width > rect2.x &&
+             rect1.y < rect2.y + rect2.height &&
+             rect1.y + rect1.height > rect2.y;
+    }
+
+    function movePlayer() {
+      if (keys["a"] || keys["arrowleft"]) {
+        player.x = Math.max(player.width/2, player.x - player.speed);
+      }
+      if (keys["d"] || keys["arrowright"]) {
+        player.x = Math.min(canvas.width - player.width/2, player.x + player.speed);
+      }
+      if (keys["w"] || keys["arrowup"]) {
+        player.y = Math.max(0, player.y - player.speed);
+      }
+      if (keys["s"] || keys["arrowdown"]) {
+        player.y = Math.min(canvas.height - player.height, player.y + player.speed);
+      }
+    }
+
+    function damagePlayer(amount) {
+      player.health -= amount;
+      if (player.health < 0) player.health = 0;
+      updateHealthBar();
+      
+      if (player.health <= 0 && !gameOver) {
+        endGame();
+      }
+    }
+
+    function updateHealthBar() {
+      const healthPercent = (player.health / player.maxHealth) * 100;
+      healthBar.style.width = healthPercent + "%";
+      
+      if (healthPercent > 50) {
+        healthBar.style.background = "linear-gradient(90deg, #00ff88, #00cc66, #009944)";
+      } else if (healthPercent > 25) {
+        healthBar.style.background = "linear-gradient(90deg, #ffaa00, #ff8800, #ff6600)";
+      } else {
+        healthBar.style.background = "linear-gradient(90deg, #ff4444, #cc0000, #990000)";
+      }
+    }
+
+    function drawScore() {
+      ctx.fillStyle = "#00ff88";
+      ctx.font = "20px Orbitron";
+      ctx.fillText(`SCORE: ${score}`, 20, 40);
+      ctx.fillText(`HIGH: ${highScore}`, 20, 70);
+    }
+
+    function endGame() {
+      gameOver = true;
+      
+      if (score > highScore) {
+        highScore = score;
+        localStorage.setItem("planeHighScore", highScore.toString());
+      }
+      
+      finalScoreText.textContent = `Mission Score: ${score}`;
+      highScoreText.textContent = `Best Performance: ${highScore}`;
+      gameOverOverlay.classList.remove("hidden");
+    }
+
+    function resetGame() {
+      player.health = player.maxHealth;
+      player.x = canvas.width / 2;
+      player.y = canvas.height - 60;
+      updateHealthBar();
+      
+      score = 0;
+      enemies.length = 0;
+      bullets.length = 0;
+      enemySpawnRate = 1500;
+      
+      gameOver = false;
+      gameOverOverlay.classList.add("hidden");
+    }
+
+    function gameLoop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      if (!gameOver) {
+        movePlayer();
+        spawnEnemy();
+        drawPlayer();
+        drawBullets();
+        drawEnemies();
+        checkBulletCollisions();
+        drawScore();
+      }
+      
+      requestAnimationFrame(gameLoop);
+    }
+
+    // Initialize game
+    updateHealthBar();
+    gameLoop();

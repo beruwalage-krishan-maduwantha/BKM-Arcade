@@ -1,191 +1,273 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
 
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
 }
 
 body {
-  background-color: #111;
-  color: #fff;
-  text-align: center;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+  color: #00ff88;
+  font-family: 'Orbitron', monospace;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 1rem;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
 }
 
 h1 {
-  font-size: 2.5rem;
-  color: #00ff99;
-  text-shadow: 0 0 6px #00ff99aa;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  color: #00ff88;
+  text-shadow: 0 0 20px #00ff88, 0 0 40px #00ff88;
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 20px #00ff88, 0 0 40px #00ff88; }
+  to { text-shadow: 0 0 30px #00ff88, 0 0 60px #00ff88, 0 0 80px #00ff88; }
+}
+
+.game-header {
+  background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+  border: 2px solid #00ff88;
+  border-radius: 20px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 255, 136, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.instructions {
+  color: #cccccc;
+  font-size: 1.1rem;
+  line-height: 1.6;
   margin-bottom: 1rem;
 }
 
-#instructions {
-  background-color: #222;
-  padding: 1rem;
-  max-width: 400px;
-  margin: 0 auto 1rem;
+.instructions h2 {
+  color: #00ff88;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.score-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  justify-content: center;
+  margin: 1.5rem 0;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.score-display {
+  color: #00ff88;
+  text-shadow: 0 0 10px #00ff88;
+}
+
+.difficulty-container {
+  margin: 1rem 0;
+}
+
+.difficulty-container label {
+  color: #cccccc;
+  font-weight: 700;
+  margin-right: 1rem;
+}
+
+.difficulty-container select {
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  border: 2px solid #00ff88;
+  color: #00ff88;
+  padding: 0.5rem 1rem;
   border-radius: 10px;
-  box-shadow: 0 0 10px #00ff9944 inset;
-  color: #ccc;
-}
-
-canvas.gameCanvas {
-  border: 3px solid #00ff99;
-  background-color: #000;
-  border-radius: 10px;
-  box-shadow: 0 0 15px #00ff99bb;
-  display: block;
-  margin: 1rem auto;
-  width: 25rem;
-  height: 25rem;
-}
-
-#scoreDisplay {
-  font-size: 1.25rem;
-  color: #fff;
-  margin: 1rem auto;
-  font-weight: 600;
-}
-
-#difficulty {
-  margin: 1rem auto;
-  font-size: 1rem;
-}
-
-#difficulty select {
-  padding: 0.5rem;
-  border-radius: 6px;
-  background-color: #00ff99;
-  color: #111;
-  font-weight: 600;
-  border: none;
-  outline: none;
-}
-
-.backmenu {
-  background-color: #00ff99;
-  color: #111;
-  margin-top: 1em;
-  border-radius: 0.5em;
-  font-weight: 600;
-  padding: 0.6em 1.2em;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px #00ff99aa;
-}
-
-.backmenu:hover {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
   cursor: pointer;
-  background-color: #00cc66;
-  transform: scale(1.1);
+  transition: all 0.3s ease;
 }
 
-.backmenu a {
-  text-decoration: none;
-  color: inherit;
+.difficulty-container select:hover {
+  background: linear-gradient(145deg, #00ff88, #00cc66);
+  color: #000;
 }
 
-#overlay {
+.game-container {
+  position: relative;
+  display: inline-block;
+  margin: 2rem 0;
+}
+
+canvas {
+  border: 3px solid #00ff88;
+  background: radial-gradient(circle at center, #0a0a0a, #000000);
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.5), inset 0 0 50px rgba(0, 255, 136, 0.1);
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  aspect-ratio: 1;
+}
+
+.game-over-overlay {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 400px;
-  height: 400px;
-  background-color: rgba(0, 0, 0, 0.85);
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
-  z-index: 10;
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
 }
 
-#overlay.hidden {
+.game-over-overlay.hidden {
   display: none;
 }
 
-#overlay-content {
-  background: #111;
-  padding: 2rem 3rem;
-  border-radius: 12px;
-  box-shadow: 0 0 15px #00ff9955;
+.game-over-content {
+  background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+  padding: 2rem;
+  border-radius: 20px;
+  border: 2px solid #00ff88;
   text-align: center;
-  color: #00ff99;
+  box-shadow: 0 8px 32px rgba(0, 255, 136, 0.3);
 }
 
-#overlay-content h2 {
+.game-over-content h2 {
   font-size: 2.5rem;
+  color: #ff4444;
   margin-bottom: 1rem;
-  text-shadow: 0 0 6px #00ff99cc;
+  text-shadow: 0 0 10px #ff4444;
 }
 
-#overlay-content p {
-  font-size: 1.25rem;
+.game-over-content p {
+  font-size: 1.2rem;
   margin-bottom: 1rem;
+  color: #cccccc;
 }
 
-#restart {
-  padding: 0.7rem 1.8rem;
-  font-size: 1.1rem;
+.btn {
+  background: linear-gradient(145deg, #00ff88, #00cc66);
+  color: #000;
   border: none;
-  border-radius: 8px;
-  background: #00ff99;
-  color: #121212;
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
+  text-decoration: none;
+  display: inline-block;
+  margin: 0.5rem;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 255, 136, 0.6);
+  background: linear-gradient(145deg, #00cc66, #00aa55);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 300px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.control-btn {
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  border: 2px solid #00ff88;
+  color: #00ff88;
+  padding: 1rem;
+  border-radius: 15px;
+  font-family: 'Orbitron', monospace;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 0 10px #00ff99cc;
-  transition: background-color 0.3s, transform 0.3s;
+  transition: all 0.3s ease;
+  user-select: none;
+  touch-action: manipulation;
 }
 
-#restart:hover {
-  background: #00cc66;
-  transform: scale(1.05);
+.control-btn:hover, .control-btn:active {
+  background: linear-gradient(145deg, #00ff88, #00cc66);
+  color: #000;
+  transform: scale(0.95);
 }
 
-@media (max-width: 425px) {
-  h1 {
-    font-size: 2rem;
-  }
-  canvas.gameCanvas {
-    width: 320px !important;
-    height: 320px !important;
-  }
-  #instructions {
-    font-size: 0.9rem;
-    padding: 0.8rem;
-  }
-  .backmenu {
-    font-size: 0.9rem;
-    padding: 0.5em 1em;
-  }
-  #overlay {
-    width: 320px;
-    height: 320px;
-  }
+.control-btn.empty {
+  opacity: 0;
+  pointer-events: none;
 }
 
-@media (max-width: 320px) {
-  h1 {
-    font-size: 1.6rem;
+.mobile-controls {
+  display: none;
+}
+
+.pause-info {
+  color: #cccccc;
+  font-size: 0.9rem;
+  margin: 1rem 0;
+}
+
+@media (max-width: 768px) {
+  .mobile-controls {
+    display: block;
   }
-  canvas.gameCanvas {
-    width: 280px !important;
-    height: 280px !important;
+  
+  canvas {
+    max-width: 400px;
   }
-  #instructions {
-    font-size: 0.85rem;
-    padding: 0.6rem;
+  
+  .game-header {
+    padding: 1rem;
   }
-  #scoreDisplay {
+  
+  .instructions {
     font-size: 1rem;
   }
-  .backmenu {
-    font-size: 0.8rem;
-    padding: 0.5em 0.9em;
+}
+
+@media (max-width: 480px) {
+  canvas {
+    max-width: 320px;
   }
-  #overlay {
-    width: 280px;
-    height: 280px;
+  
+  .score-container {
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 1rem;
+  }
+  
+  .controls {
+    max-width: 250px;
+    gap: 0.5rem;
+  }
+  
+  .control-btn {
+    padding: 0.8rem;
+    font-size: 0.9rem;
   }
 }

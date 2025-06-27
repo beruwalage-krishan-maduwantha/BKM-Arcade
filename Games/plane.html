@@ -7,35 +7,54 @@
   <link rel="stylesheet" href="plane.css" />
 </head>
 <body>
-  <h1>✈️ 2D Plane Game</h1>
+ <div class="container">
+    <h1>✈️ 2D Plane Game</h1>
 
-  <div id="instructions">
-    <h2>How to Play</h2>
-    <p>Use <strong>W (up), A (left), S (down), D (right)</strong> to move the plane.</p>
-    <p>Press <strong>Spacebar</strong> to shoot bullets.</p>
-    <p>Avoid enemies and shoot them down to earn points!</p>
-  </div>
+    <div class="game-header">
+      <div class="instructions">
+        <h2>MISSION BRIEFING</h2>
+        <p>Navigate your fighter plane using <strong>WASD</strong> or arrow keys</p>
+        <p>Press <strong>SPACEBAR</strong> to fire missiles</p>
+        <p>Eliminate enemy aircraft and survive as long as possible!</p>
+      </div>
 
-  <div id="health-container">
-    <span>Health:</span>
-    <div id="health-bar"><div></div></div>
-  </div>
-
-  <div style="position: relative; display: inline-block;">
-    <canvas id="planeCanvas" width="400" height="400"></canvas>
-
-    <div id="game-over-overlay" class="hidden">
-      <div id="game-over-content">
-        <h2>Game Over</h2>
-        <p id="final-score"></p>
-        <p id="high-score-display"></p>
-        <button id="restart-btn">Restart Game</button>
+      <div class="health-container">
+        <span>HEALTH BAR:</span>
+        <div class="health-bar">
+          <div class="health-fill"></div>
+        </div>
       </div>
     </div>
+
+    <div class="game-container">
+      <canvas id="gameCanvas" width="500" height="500"></canvas>
+      
+      <div id="gameOverOverlay" class="game-over-overlay hidden">
+        <div class="game-over-content">
+          <h2>Game Over</h2>
+          <p id="finalScore"></p>
+          <p id="highScore"></p>
+          <button id="restartBtn" class="btn">RESTART GAME</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-controls">
+      <div class="controls">
+        <div class="control-btn empty"></div>
+        <div class="control-btn" id="upBtn">↑</div>
+        <div class="control-btn empty"></div>
+        <div class="control-btn" id="leftBtn">←</div>
+        <div class="control-btn" id="fireBtn">🚀</div>
+        <div class="control-btn" id="rightBtn">→</div>
+        <div class="control-btn empty"></div>
+        <div class="control-btn" id="downBtn">↓</div>
+        <div class="control-btn empty"></div>
+      </div>
+    </div>
+
+    <button class="btn" onclick="window.location.href='../index.html'">RETURN TO MENU</button>
   </div>
-
-  <div><button class="backmenu"><a href="../index.html">Back to Menu</a></button></div>
-
 
 
   <script src="plane.js"></script>

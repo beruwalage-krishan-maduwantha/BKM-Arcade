@@ -7,36 +7,58 @@
   <link rel="stylesheet" href="rps.css" />
 </head>
 <body>
-  <h1>✊ Rock Paper Scissors ✌️</h1>
+  <div class="container">
+    <h1>⚔️ ROCK PAPER SCISSORS</h1>
 
-  <div id="instructions">
-    <h2>How to Play</h2>
-    <p>Click on ✊ Rock, ✋ Paper, or ✌️ Scissors to challenge the computer!</p>
-    <p>First to 5 points wins the game.</p>
-  </div>
+    <div class="game-header">
+      <div class="instructions">
+        <h2>COMBAT PROTOCOL</h2>
+        <p>Select your weapon to engage in digital combat</p>
+        <p>First combatant to achieve <strong>5 victories</strong> wins the war!</p>
+      </div>
 
-  <div class="choices">
-    <div class="choice" onclick="play('rock')">✊ Rock</div>
-    <div class="choice" onclick="play('paper')">✋ Paper</div>
-    <div class="choice" onclick="play('scissors')">✌️ Scissors</div>
-  </div>
-
-  <div id="result">Make your move!</div>
-
-  <div class="scoreboard">
-    <p>👤 You: <span id="user-score">0</span></p>
-    <p>💻 Computer: <span id="computer-score">0</span></p>
-  </div>
-
-  <div id="overlay" class="hidden">
-    <div id="overlay-content">
-      <h2 id="final-message"></h2>
-      <button onclick="restartGame()" id="restart">Play Again</button>
+      <div class="scoreboard">
+        <div class="score-item">
+          <span>PLAYER</span>
+          <div class="score-value" id="user-score">0</div>
+        </div>
+        <div class="score-item">
+          <span>VS</span>
+        </div>
+        <div class="score-item">
+          <span>Computer</span>
+          <div class="score-value" id="computer-score">0</div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div><button class="backmenu"><a href="../index.html">Back to Menu</a></button></div>
+    <div class="choices">
+      <div class="choice" onclick="play('rock')">
+        <div class="choice-icon">✊</div>
+        <div class="choice-text">ROCK</div>
+      </div>
+      <div class="choice" onclick="play('paper')">
+        <div class="choice-icon">✋</div>
+        <div class="choice-text">PAPER</div>
+      </div>
+      <div class="choice" onclick="play('scissors')">
+        <div class="choice-icon">✌️</div>
+        <div class="choice-text">SCISSORS</div>
+      </div>
+    </div>
 
+    <div class="result-container">
+      <div id="result">SELECT YOUR WEAPON TO BEGIN COMBAT</div>
+    </div>
+
+    <div id="overlay" class="hidden">
+      <div id="overlay-content">
+        <h2 id="final-message"></h2>
+        <button onclick="restartGame()" class="btn">RESTART COMBAT</button>
+      </div>
+    </div>
+
+    <button class="btn" onclick="window.location.href='../index.html'">RETURN TO MENU</button>
   <script src="rps.js"></script>
 </body>
 </html>

@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="wrapper">
+ <div class="wrapper">
     <div class="header">
       <div class="headerarea">
         <div><h1 class="headBA">BKM Arcade</h1></div>
@@ -25,57 +25,111 @@
       </div>
     </div>
 
-    <div>
-      <h4>Welcome! Choose a game to play</h4>
-    </div>
+    <div class="main-content">
+      <div class="welcome-section">
+        <h4>Welcome! Choose a game to play</h4>
+        <p class="welcome-subtitle">Dive into our collection of exciting games and challenge yourself</p>
+      </div>
 
-    <div class="games_grid">
-      <a href="Games/snake.html" class="game_card">
-        <img src="images/snake_17959764.png" alt="Snake Game" />
-        <span class="spancont">Snake</span>
-      </a>
-      <a href="Games/plane.html" class="game_card">
-        <img src="images/aviation_9192398.png" alt="2D Plane Game" />
-        <span class="spancont">2D Plane Game</span>
-      </a>
-      <a href="Games/rps.html" class="game_card">
-        <img src="images/rock-paper-scissors_6832100.png" alt="Rock Paper Scissors" />
-        <span class="spancont">Rock Paper Scissors</span>
-      </a>
-    </div>
+<!-- Fun Facts Section -->
+      <div class="fun-facts-section">
+        <div class="fun-facts-header">
+          <h3>🎮 Gaming Fun Facts</h3>
+          <p>Did you know these amazing facts about gaming?</p>
+        </div>
+        <div class="fun-facts-grid">
+          <div class="fun-fact-card">
+            <span class="fun-fact-icon">🐍</span>
+            <div class="fun-fact-title">Snake Game Legacy</div>
+            <div class="fun-fact-description">The original Snake game was created in 1976 and became famous on Nokia phones in the late 90s!</div>
+          </div>
+          <div class="fun-fact-card">
+            <span class="fun-fact-icon">🧠</span>
+            <div class="fun-fact-title">Brain Booster</div>
+            <div class="fun-fact-description">Playing games can improve problem-solving skills, memory, and reaction time by up to 20%!</div>
+          </div>
+          <div class="fun-fact-card">
+            <span class="fun-fact-icon">⚡</span>
+            <div class="fun-fact-title">Lightning Reflexes</div>
+            <div class="fun-fact-description">Gamers have 25% faster reaction times than non-gamers, making them better at quick decisions!</div>
+          </div>
+          <div class="fun-fact-card">
+            <span class="fun-fact-icon">🎯</span>
+            <div class="fun-fact-title">Focus Power</div>
+            <div class="fun-fact-description">Regular gaming can increase attention span and concentration levels significantly!</div>
+          </div>
+        </div>
+      </div>
 
-    <!-- Footer -->
+      <!-- Gaming Stats -->
+      <div class="gaming-stats">
+        <h4>🏆 Amazing Gaming Statistics</h4>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number">3.2B</span>
+            <span class="stat-label">Global Gamers</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">70%</span>
+            <span class="stat-label">Play Mobile Games</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">1974</span>
+            <span class="stat-label">First Arcade Game</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">2.5h</span>
+            <span class="stat-label">Daily Play Time</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="games_grid">
+        <a href="Games/snake.html" class="game_card">
+          <img src="images/snake_17959764.png" alt="Snake Game" />
+          <span class="spancont">Snake</span>
+        </a>
+        <a href="Games/plane.html" class="game_card">
+          <img src="images/aviation_9192398.png" alt="2D Plane Game" />
+          <span class="spancont">2D Plane Game</span>
+        </a>
+        <a href="Games/rps.html" class="game_card">
+          <img src="images/rock-paper-scissors_6832100.png" alt="Rock Paper Scissors" />
+          <span class="spancont">Rock Paper Scissors</span>
+        </a>
+      </div>
+
+<!-- Footer -->
     <div id="footer">
       <div class="footercontent">
         <div class="footerlinks">
           <div class="BA"><h1>BKM Arcade</h1></div>
 
-          <div>
-            <ul class="links">
-              <li> 
-                <p class="title">About BKM Arcade</p>
-                <ul>
-                  <li><a href="header.html">About us</a></li>
-                </ul>
-              </li>
-              <li>
-                <p class="title">Developers</p>
-                <ul>
-                  <li><a href="divelopers.html">Forum</a></li>
-                  <li><a href="divelopers.html">Projects</a></li>
-                  <li><a href="divelopers.html">Open Source</a></li>
-                </ul>
-              </li>
+          <div class="footer-sections">
+            <div class="footer-section">
+              <p class="title">About BKM Arcade</p>
+              <ul>
+                <li><a href="header.html">About us</a></li>
+              </ul>
+            </div>
+            
+            <div class="footer-section">
+              <p class="title">Developers</p>
+              <ul>
+                <li><a href="divelopers.html">Forum</a></li>
+                <li><a href="divelopers.html">Projects</a></li>
+                <li><a href="divelopers.html">Open Source</a></li>
+              </ul>
+            </div>
 
-              <li>
-                <p class="title">Resources</p>
-                <ul>
-                  <li><a href="resources.html">Documentation</a></li>
-                  <li><a href="resources.html">Support</a></li>
-                  <li><a href="https://github.com/beruwalage-krishan-maduwantha">Github</a></li>
-                </ul>
-              </li>
-            </ul>
+            <div class="footer-section">
+              <p class="title">Resources</p>
+              <ul>
+                <li><a href="resources.html">Documentation</a></li>
+                <li><a href="resources.html">Support</a></li>
+                <li><a href="https://github.com/beruwalage-krishan-maduwantha">Github</a></li>
+              </ul>
+            </div>
           </div>
 
           <div class="privacyarea">
@@ -101,7 +155,7 @@
         <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo" />
         Continue with Google
       </button>
-      <p style="font-size: 12px; color: gray;">* Frontend simulation only</p>
+      <p>* Frontend simulation only</p>
     </div>
   </div>
 

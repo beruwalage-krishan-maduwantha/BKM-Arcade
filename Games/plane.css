@@ -1,283 +1,256 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-  box-sizing: border-box;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  background-color: #121212;
-  color: #eee;
-  text-align: center;
-  padding: 1rem;
-  user-select: none;
-}
+    body {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+      color: #00ff88;
+      font-family: 'Orbitron', monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      overflow-x: hidden;
+    }
 
-h1 {
-  font-weight: 500;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: #00ff99;
-  text-shadow: 0 0 6px #00ff99aa;
-}
+    .container {
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
 
-#instructions {
-  max-width: 400px;
-  margin: 0 auto 1.5rem auto;
-  font-size: 1rem;
-  color: #ccc;
-  background: #222;
-  padding: 1rem 1.25rem;
-  border-radius: 10px;
-  box-shadow: 0 0 15px #00ff9955 inset;
-}
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      color: #00ff88;
+      text-shadow: 0 0 20px #00ff88, 0 0 40px #00ff88;
+      margin-bottom: 2rem;
+      letter-spacing: 2px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
 
-#instructions h2 {
-  margin-bottom: 0.75rem;
-  color: #00ff99;
-}
+    @keyframes glow {
+      from { text-shadow: 0 0 20px #00ff88, 0 0 40px #00ff88; }
+      to { text-shadow: 0 0 30px #00ff88, 0 0 60px #00ff88, 0 0 80px #00ff88; }
+    }
 
-#health-container {
-  max-width: 400px;
-  margin: 0 auto 1.5rem auto;
-  display: flex;
-  align-items: center;
-  font-weight: 600;
-  color: #eee;
-  user-select: none;
-  gap: 0.5rem;
-  font-size: 1.1rem;
-}
+    .game-header {
+      background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+      border: 2px solid #00ff88;
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 255, 136, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
 
-#health-bar {
-  flex: 1;
-  height: 24px;
-  background: #333;
-  border-radius: 12px;
-  box-shadow: inset 0 0 5px #000000aa;
-  overflow: hidden;
-  position: relative;
-}
+    .instructions {
+      color: #cccccc;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
 
-#health-bar > div {
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(90deg, #00ff99 0%, #00cc66 50%, #009944 100%);
-  border-radius: 12px 0 0 12px;
-  transition: width 0.35s ease;
-  box-shadow: 0 0 10px #00ff99aa;
-}
+    .instructions h2 {
+      color: #00ff88;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
 
-canvas {
-  border: 3px solid #00ff99;
-  background-color: #0a0a0a;
-  border-radius: 10px;
-  box-shadow: 0 0 15px #00ff99bb;
-  display: block;
-  margin: 0 auto 1rem auto;
-  width: 25rem;
-  height: 25rem;
-}
+    .health-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      justify-content: center;
+      margin: 1.5rem 0;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
 
-.backmenu {
-  background-color: #00ff99;
-  color: #121212;
-  margin-top: 1em;
-  border-radius: 0.6em;
-  padding: 0.6em 1.2em;
-  font-weight: 700;
-  font-size: 1rem;
-  box-shadow: 0 0 8px #00ff99aa;
-  transition: background-color 0.3s, transform 0.3s;
-}
+    .health-bar {
+      width: 200px;
+      height: 20px;
+      background: #222;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid #00ff88;
+      box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+    }
 
-.backmenu:hover {
-  cursor: pointer;
-  background-color: #00cc66;
-  transform: scale(1.1);
-}
+    .health-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #00ff88, #00cc66, #009944);
+      transition: width 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 255, 136, 0.8);
+    }
 
-.backmenu a {
-  text-decoration: none;
-  color: inherit;
-}
+    .game-container {
+      position: relative;
+      display: inline-block;
+      margin: 2rem 0;
+    }
 
-/* Game Over Overlay */
-#game-over-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 400px;
-  height: 400px;
-  background-color: rgba(0, 0, 0, 0.85);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  user-select: none;
-  z-index: 10;
-}
+    canvas {
+      border: 3px solid #00ff88;
+      background: radial-gradient(circle at center, #0a0a0a, #000000);
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0, 255, 136, 0.5), inset 0 0 50px rgba(0, 255, 136, 0.1);
+      display: block;
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      aspect-ratio: 1;
+    }
 
-#game-over-overlay.hidden {
-  display: none;
-}
+    .game-over-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15px;
+      backdrop-filter: blur(5px);
+    }
 
-#game-over-content {
-  background: #111;
-  padding: 2rem 3rem;
-  border-radius: 12px;
-  box-shadow: 0 0 15px #00ff9955;
-  text-align: center;
-  color: #00ff99;
-}
+    .game-over-overlay.hidden {
+      display: none;
+    }
 
-#game-over-content h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  text-shadow: 0 0 6px #00ff99cc;
-}
+    .game-over-content {
+      background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+      padding: 2rem;
+      border-radius: 20px;
+      border: 2px solid #00ff88;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 255, 136, 0.3);
+    }
 
-#game-over-content p {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-}
+    .game-over-content h2 {
+      font-size: 2.5rem;
+      color: #ff4444;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px #ff4444;
+    }
 
-#restart-btn {
-  padding: 0.7rem 1.8rem;
-  font-size: 1.1rem;
-  border: none;
-  border-radius: 8px;
-  background: #00ff99;
-  color: #121212;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 0 10px #00ff99cc;
-  transition: background-color 0.3s, transform 0.3s;
-}
+    .game-over-content p {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: #cccccc;
+    }
 
-#restart-btn:hover {
-  background: #00cc66;
-  transform: scale(1.05);
-}
+    .btn {
+      background: linear-gradient(145deg, #00ff88, #00cc66);
+      color: #000;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 15px;
+      font-family: 'Orbitron', monospace;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
+      text-decoration: none;
+      display: inline-block;
+      margin: 0.5rem;
+    }
 
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 255, 136, 0.6);
+      background: linear-gradient(145deg, #00cc66, #00aa55);
+    }
 
-@media (max-width: 425px) {
-  body {
-    padding: 0.75rem;
-  }
+    .btn:active {
+      transform: translateY(0);
+    }
 
-  h1 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-  }
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      max-width: 300px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
 
-  #instructions {
-    max-width: 100%;
-    font-size: 0.9rem;
-    padding: 0.8rem 1rem;
-  }
+    .control-btn {
+      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+      border: 2px solid #00ff88;
+      color: #00ff88;
+      padding: 1rem;
+      border-radius: 15px;
+      font-family: 'Orbitron', monospace;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      user-select: none;
+      touch-action: manipulation;
+    }
 
-  #health-container {
-    max-width: 100%;
-    font-size: 1rem;
-    gap: 0.3rem;
-  }
+    .control-btn:hover, .control-btn:active {
+      background: linear-gradient(145deg, #00ff88, #00cc66);
+      color: #000;
+      transform: scale(0.95);
+    }
 
-  #health-bar {
-    height: 18px;
-  }
+    .control-btn.empty {
+      opacity: 0;
+      pointer-events: none;
+    }
 
-  canvas {
-    width: 320px !important;
-    height: 320px !important;
-    border-width: 2px;
-  }
+    .mobile-controls {
+      display: none;
+    }
 
-  #game-over-overlay {
-    width: 320px;
-    height: 320px;
-  }
+    @media (max-width: 768px) {
+      .mobile-controls {
+        display: block;
+      }
+      
+      canvas {
+        max-width: 400px;
+      }
+      
+      .game-header {
+        padding: 1rem;
+      }
+      
+      .instructions {
+        font-size: 1rem;
+      }
+    }
 
-  #game-over-content {
-    padding: 1.5rem 2rem;
-  }
-
-  #game-over-content h2 {
-    font-size: 2rem;
-  }
-
-  #game-over-content p {
-    font-size: 1rem;
-  }
-
-  #restart-btn {
-    padding: 0.6rem 1.4rem;
-    font-size: 1rem;
-  }
-
-  .backmenu {
-    font-size: 0.9rem;
-    padding: 0.5em 1em;
-  }
-}
-
-
-@media (max-width: 320px) {
-  body {
-    padding: 0.5rem;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-    margin-bottom: 0.8rem;
-  }
-
-  #instructions {
-    font-size: 0.85rem;
-    padding: 0.6rem 0.8rem;
-  }
-
-  #health-container {
-    font-size: 0.9rem;
-    gap: 0.2rem;
-  }
-
-  #health-bar {
-    height: 16px;
-  }
-
-  canvas {
-    width: 280px !important;
-    height: 280px !important;
-    border-width: 1.5px;
-  }
-
-  #game-over-overlay {
-    width: 280px;
-    height: 280px;
-  }
-
-  #game-over-content {
-    padding: 1rem 1.5rem;
-  }
-
-  #game-over-content h2 {
-    font-size: 1.7rem;
-  }
-
-  #game-over-content p {
-    font-size: 0.9rem;
-  }
-
-  #restart-btn {
-    padding: 0.5rem 1.2rem;
-    font-size: 0.9rem;
-  }
-
-  .backmenu {
-    font-size: 0.8rem;
-    padding: 0.4em 0.8em;
-  }
-}
+    @media (max-width: 480px) {
+      canvas {
+        max-width: 320px;
+      }
+      
+      .health-bar {
+        width: 150px;
+        height: 16px;
+      }
+      
+      .health-container {
+        font-size: 1rem;
+      }
+      
+      .controls {
+        max-width: 250px;
+        gap: 0.5rem;
+      }
+      
+      .control-btn {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+      }
+    }
