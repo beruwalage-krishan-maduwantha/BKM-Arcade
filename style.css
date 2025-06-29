@@ -59,13 +59,20 @@
       padding: 0 2rem;
     }
 
-    .headBA {
-      font-size: 1.75rem;
-      font-weight: 700;
-      background: var(--primary-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    /* Logo styles */
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-container img {
+      height: 50px;
+      width: auto;
+      transition: var(--transition);
+    }
+
+    .logo-container:hover img {
+      transform: scale(1.05);
     }
 
     .navlinks {
@@ -568,6 +575,10 @@
         padding: 0 1rem;
       }
 
+      .logo-container img {
+        height: 40px;
+      }
+
       .navlinks {
         gap: 1rem;
       }
@@ -637,6 +648,10 @@
     @media (max-width: 480px) {
       .headerarea {
         padding: 0 0.5rem;
+      }
+
+      .logo-container img {
+        height: 35px;
       }
 
       .login {
